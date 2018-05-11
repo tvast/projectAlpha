@@ -4,12 +4,13 @@ import { NavController, NavParams } from 'ionic-angular';
 import {Http} from '@angular/http';
 import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AlertController, Platform } from 'ionic-angular';
 
 @Component({
   templateUrl: 'home.html'
 })
 export class HomePage {
-	url: string = 'http://cours.ifmadrid.com/prof/wp-json/wp/v2/posts';
+	url: string = 'http://cours.ifmadrid.com/prof/wp-json/wp/v2/pages';
 	items: any;
 
 	constructor(public navCtrl: NavController, private http: Http, private nav: NavController ) {
@@ -31,4 +32,14 @@ export class HomePage {
 		  item: item
 		});
 	}
+
+	 showPlatform() {
+    let text = 'I run on: ' + this.platform.platforms();
+    let alert = this.alertCtrl.create({
+      title: 'My Home',
+      subTitle: text,
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 }
